@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpForawrd : MonoBehaviour
 {
     public bool isFlat = true;
-    
+    public float moveSpeedObj;
     private Rigidbody rb;
     public float jumpHigh;
     public float forwardSpeed;
@@ -35,11 +35,13 @@ public class JumpForawrd : MonoBehaviour
         
             if (touch.phase == TouchPhase.Moved)
             {
-                transform.position = new Vector3(
+               Vector3 newPlayerMove = new Vector3(
                     transform.position.x + zeroForSmooth + touch.deltaPosition.x * speedModifier * Time.deltaTime,
                     transform.position.y,
                     transform.position.z);
-               
+
+
+              transform.position = Vector3.Lerp(transform.position, newPlayerMove, moveSpeedObj);
             }
         }
 
